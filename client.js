@@ -6,5 +6,5 @@ socket.on("translate result",res=>{
     output.value=res;
 });
 run.addEventListener("click",()=>{
-    socket.emit(input.value);
+    socket.emit("translate",input.value);
 });
