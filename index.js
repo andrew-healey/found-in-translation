@@ -1,5 +1,5 @@
-const translate=require("google-translate-api");
-const langs=require("./node_modules/google-translate-api/languages");
+const translate=require("translatte");
+const langs=require("./node_modules/translatte/languages");
 const shortenedLangs=Object.keys(langs);
 const express=require("express");
 const app=express();
@@ -12,6 +12,7 @@ io.sockets.on("connection",(socket)=>{
     socket.on("translate",async (inputString="",recursions=10)=>{
         let editString=inputString;
         for(let i=0;i<recursions;i++){
+            //Add proxy usage
             editString=await translate(editString,{to:shortenedLangs[Math.floor(Math.random()*shortenedLangs.length)]}).text;
         }
         socket.emit("translate result",editString);
