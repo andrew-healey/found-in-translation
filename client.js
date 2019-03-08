@@ -1,4 +1,8 @@
-const {input,output,run}=document.translate;
+const {
+  input,
+  output,
+  run
+} = document.translate;
 const languages = {
   'auto': 'Automatic',
   'af': 'Afrikaans',
@@ -106,26 +110,28 @@ const languages = {
   'yo': 'Yoruba',
   'zu': 'Zulu'
 };
-const langs=Object.keys(languages);
-const getLang=()=>langs[Math.floor(Math.random()*langs.length)];
-async function getTranslate(currentLang,nextLang,sourceText) {
-  let url="https://cors-anywhere.herokuapp.com/https://translate.googleapis.com/translate_a/single?client=gtx&sl=" 
-            + currentLang + "&tl=" + nextLang + "&dt=t&q=" + encodeURIComponent(sourceText);
-    let res=await fetch(url,{
-  mode: 'cors'
-});
-    let json=await res.json();
-    return json[0][0][0];
+const langs = Object.keys(languages);
+const getLang = () => langs[Math.floor(Math.random() * langs.length)];
+async function getTranslate(currentLang, nextLang, sourceText) {
+  const API_URL = "https://translate.googleapis.com/translate_a/single";
+  const CORS_URLS = ["https://cors-anywhere.herokuapp.com/", "https://www.whateverorigin.org/get?url="];
+  let url = CORS_URLS[0] + "https://translate.googleapis.com/translate_a/single?client=gtx&sl=" + currentLang + "&tl=" + nextLang + "&dt=t&q=" + encodeURIComponent(sourceText);
+  let res = await fetch(url, {
+    mode: 'cors'
+  });
+  console.log(res);
+  let json = await res.json();
+  return json[0][0][0];
 }
-run.addEventListener("click",async ()=>{
-  let currentLang="en";
+run.addEventListener("click", async () => {
+  let currentLang = "en";
   let nextLang;
-  let sourceText=input.value;
-  for(i=0;i<20;i++){
-    nextLang=getLang();
-    sourceText=await getTranslate(currentLang,nextLang,sourceText);
-    output.value=sourceText;
-    currentLang=nextLang;
+  let sourceText = input.value;
+  for (i = 0; i < 20; i++) {
+    nextLang = getLang();
+    sourceText = await getTranslate(currentLang, nextLang, sourceText);
+    output.value = sourceText;
+    currentLang = nextLang;
   }
-  output.value=await getTranslate(currentLang,"en",sourceText);
+  output.value = await getTranslate(currentLang, "en", sourceText);
 });
