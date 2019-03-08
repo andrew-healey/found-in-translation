@@ -115,11 +115,14 @@ const getLang = () => langs[Math.floor(Math.random() * langs.length)];
 async function getTranslate(currentLang, nextLang, sourceText) {
   const API_URL = "https://translate.googleapis.com/translate_a/single";
   const CORS_URLS = ["https://cors-anywhere.herokuapp.com/", "https://www.whateverorigin.org/get?url="];
-  let url = CORS_URLS[0] + "https://translate.googleapis.com/translate_a/single?client=gtx&sl=" + currentLang + "&tl=" + nextLang + "&dt=t&q=" + encodeURIComponent(sourceText);
-  let res = await fetch(url, {
-    mode: 'cors'
-  });
-  console.log(res);
+  let res;
+  for (CORS_URL of CORS_URLS) {
+    let url = CORS_URL + "https://translate.googleapis.com/translate_a/single?client=gtx&sl=" + currentLang + "&tl=" + nextLang + "&dt=t&q=" + encodeURIComponent(sourceText);
+    res = await fetch(url);
+    console.log(res.statusText,res);
+    if (!res.statusText) break;
+  }
+  if (!res) return;
   let json = await res.json();
   return json[0][0][0];
 }
