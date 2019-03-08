@@ -1,7 +1,8 @@
 const {
   input,
   output,
-  run,number
+  run,
+  number
 } = document.translate;
 const languages = {
   'auto': 'Automatic',
@@ -114,7 +115,7 @@ const langs = Object.keys(languages);
 const getLang = () => langs[Math.floor(Math.random() * langs.length)];
 async function getTranslate(currentLang, nextLang, sourceText) {
   const API_URL = "https://translate.googleapis.com/translate_a/single";
-  const CORS_URLS = [API_URL+"https://cors-anywhere.herokuapp.com/", API_URL+encodeURIComponent("https://www.whateverorigin.org/get?url=")];
+  const CORS_URLS = [API_URL + "https://cors-anywhere.herokuapp.com/", API_URL + encodeURIComponent("https://www.whateverorigin.org/get?url=")];
   let res;
   for (CORS_URL of CORS_URLS) {
     res = await fetch(CORS_URL, {
