@@ -1,7 +1,7 @@
 const {
   input,
   output,
-  run
+  run,number
 } = document.translate;
 const languages = {
   'auto': 'Automatic',
@@ -131,7 +131,7 @@ run.addEventListener("click", async () => {
   let currentLang = "en";
   let nextLang;
   let sourceText = input.value;
-  for (i = 0; i < 20; i++) {
+  for (i = 0; i < number.value; i++) {
     nextLang = getLang();
     sourceText = await getTranslate(currentLang, nextLang, sourceText);
     output.value = sourceText;
