@@ -3,13 +3,15 @@
     <head>
         <meta charset="utf-8"/>
         <title>Added in Translation</title>
+        <link rel="stylesheet" type="text/css" href="index.css"/>
     </head>
     <body>
         <form name="translate">
-            <input type="text" name="input" placeholder="Input text..."/>
+            <textarea type="text" name="input" placeholder="Input text..."/></textarea>
             <br>
             <input type="button" name="run" value="Translate!"/>
-            <input type="text" name="output" placeholder="Output will go here!" readonly/>
+            <br/>
+            <textarea type="text" name="output" placeholder="Output will go here!" readonly></textarea>
         </form>
         <script type="text/javascript" defer src="client.js"></script>
     </body>
