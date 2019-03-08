@@ -111,7 +111,12 @@ const getLang=()=>langs[Math.floor(Math.random()*langs.length)];
 async function getTranslate(currentLang,nextLang,sourceText) {
 let url="https://translate.googleapis.com/translate_a/single?client=gtx&sl=" 
             + currentLang + "&tl=" + nextLang + "&dt=t&q=" + encodeURIComponent(sourceText);
-    let res=await fetch(url);
+    let res=await fetch(url,{
+  mode: 'cors',
+  headers: {
+    'Access-Control-Allow-Origin':'*'
+  }
+});
     let json=await res.json();
     console.log(json);
     return json[0][0][0];
