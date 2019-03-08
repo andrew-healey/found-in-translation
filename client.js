@@ -118,8 +118,10 @@ async function getTranslate(currentLang, nextLang, sourceText) {
   let res;
   for (CORS_URL of CORS_URLS) {
     let url = CORS_URL + "https://translate.googleapis.com/translate_a/single?client=gtx&sl=" + currentLang + "&tl=" + nextLang + "&dt=t&q=" + encodeURIComponent(sourceText);
-    res = await fetch(url);
-    console.log(res.statusText,res);
+    res = await fetch(url, {
+      mode: 'cors'
+    });
+    console.log(res.statusText, res);
     if (!res.statusText) break;
   }
   if (!res) return;
