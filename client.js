@@ -115,7 +115,6 @@ async function getTranslate(currentLang,nextLang,sourceText) {
   mode: 'cors'
 });
     let json=await res.json();
-    console.log(json);
     return json[0][0][0];
 }
 run.addEventListener("click",async ()=>{
