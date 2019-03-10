@@ -121,7 +121,8 @@ async function getTranslate(currentLang, nextLang, sourceText) {
     res = await fetch(CORS_URL + url, {
       mode: 'cors'
     });
-    if (!res.statusText) break;
+    console.log(res);
+    if (res.statusText=="OK") break;
   }
   if (!res) return;
   let json = await res.json();
