@@ -1,1 +1,1 @@
-let proxyFinder = [(url => url), (url => "https://cors-anywhere.herokuapp.com/" + url),(url=>"https://corsanywhere.herokuapp.com/"+url),(url=>"https://cors-any-where.herokuapp.com"+url), (url => "https://crossorigin.me/" + url)];
+let proxyFinder = [(url => url), (url => "https://cors-anywhere.herokuapp.com/" + url), (url => "https://corsanywhere.herokuapp.com/" + url), (url => "https://cors-any-where.herokuapp.com/" + url), (url => "https://corsany-where.herokuapp.com" + url)];
