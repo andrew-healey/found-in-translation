@@ -9,6 +9,6 @@ input[type=range]::-moz-range-track{
 body{
   text-align:center;
 }
-ul{
+ol{
   list-style-position:inside;
 }
