@@ -1,1 +1,2 @@
-let proxyFinder = [(url => url), (url => "https://cors-anywhere.herokuapp.com/" + url), (url => "https://corsanywhere.herokuapp.com/" + url), (url => "https://cors-any-where.herokuapp.com/" + url), (url => "https://corsany-where.herokuapp.com" + url)];
+let makeCorsProxy=proxy=>url=>"https://"+proxy+".herokuapp.com/"+url;
+let proxyFinder = [(url => url), makeCorsProxy("cors-anywhere"), makeCorsProxy("corsanywhere"),makeCorsProxy("cors-any-where"),makeCorsProxy("corsany-where"),makeCorsProxy("anywhere-cors"),makeCorsProxy("c-o-r-s-anywhere")];
