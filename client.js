@@ -20,13 +20,14 @@ async function getTranslate(currentLang, nextLang, sourceText) {
     } catch (err) {
       res = undefined;
     }
+    console.log(res);
     if (!res || res.statusText !== "OK") {
-      console.log(proxyFinder[0],"failed");
+      console.log(proxyFinder[0](),"failed");
       proxyFinder.push(proxyFinder.shift());
     } else break;
   }
   if (!res || res.statusText !== "OK") return alert("Error--Google has blocked this bot for ~5 minutes because Google hates bots.");
-  console.log(proxyFinder[0]);
+  console.log(proxyFinder[0]());
   let json = await res.json();
   return json[0][0][0];
 }
