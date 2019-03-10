@@ -44,7 +44,8 @@ const languages = {
   'haw': 'Hawaiian',
   'iw': 'Hebrew',
   'hi': 'Hindi',
-  'hmn': 'Hmong', 'hu': 'Hungarian',
+  'hmn': 'Hmong',
+  'hu': 'Hungarian',
   'is': 'Icelandic',
   'ig': 'Igbo',
   'id': 'Indonesian',
@@ -112,19 +113,25 @@ const languages = {
 };
 const langs = Object.keys(languages);
 const getLang = () => langs[Math.floor(Math.random() * langs.length)];
+let proxyFinder = [(url => url), (url => "https://cors-anywhere.herokuapp.com/" + url), (url => "https://crossorigin.me/" + url)];
 const API_URL = "https://translate.googleapis.com/translate_a/single";
 async function getTranslate(currentLang, nextLang, sourceText) {
   let url = API_URL + "?client=gtx&sl=" + currentLang + "&tl=" + nextLang + "&dt=t&q=" + encodeURIComponent(sourceText);
-  const CORS_URLS = ["https://cors-anywhere.herokuapp.com/"];
   let res;
-  for (CORS_URL of CORS_URLS) {
-    res = await fetch(CORS_URL + url, {
-      mode: 'cors'
-    });
-    console.log(res);
-    if (res.statusText=="OK") break;
+  let toReq;
+  for (let i = 0; i < proxyFinder.length; i++) {
+    toReq = proxyFinder[0](url);
+    try {
+      res = await fetch(toReq, {
+        mode: 'cors'
+      });
+    } catch (err) {
+      res = undefined;
+    }
+    if (!res || res.statusText != "OK") proxyFinder.push(proxyFinder.shift());
+    else break;
   }
-  if (!res) return;
+  if (!res || res.statusText !== "OK") return alert("Error--Google has blocked this bot for ~5 minutes because Google hates bots.");
   let json = await res.json();
   return json[0][0][0];
 }
@@ -135,6 +142,7 @@ run.addEventListener("click", async () => {
   for (i = 0; i < number.value; i++) {
     nextLang = getLang();
     sourceText = await getTranslate(currentLang, nextLang, sourceText);
+    if (!sourceText) return;
     output.value = sourceText;
     currentLang = nextLang;
   }
