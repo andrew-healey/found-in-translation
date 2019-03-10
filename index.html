@@ -6,12 +6,23 @@
         <link rel="stylesheet" type="text/css" href="index.css"/>
     </head>
     <body>
+          <h1>Found in Translation</h1>
+          <h2>The game where Google Translate butchers your sentences!</h2>
+          <p>How to play:</p>
+          <ol>
+            <li>Enter some text into the box marked 'Input text...'. Try famous quotes.</li>
+            <li>Choose a number of times that Google will process your sentence, from 10 to 30</li>
+            <li>Click 'Butcher' to butcher the sentence</li>
+            <li>Watch as Google cycles through some of its hundreds of languages</li>
+            <li>If it doesn't work, Google has found you and knows that you are a bot. Wait 15 minutes and try again later.</li>
+          </ol>
         <form name="translate">
             <textarea type="text" name="input" placeholder="Input text..."/></textarea>
             <br>
-            <input type="range" min="10" max="30" name="number" value="20"/>
+            <p>Number of translation cycles:</p>
+            <input type="range" min="10" max="30" name="number" value="20" step="1"/>
             <br/>
-            <input type="button" name="run" value="Translate!"/>
+            <input type="button" name="run" value="Butcher"/>
             <br/>
             <textarea type="text" name="output" placeholder="Output will go here!" readonly></textarea>
         </form>

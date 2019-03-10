@@ -2,3 +2,13 @@ textarea {
   width:200px;
   height:100px;
 }
+input[type=range]::-moz-range-track{
+  background:#CCCCCC;
+  border:1px solid gray;
+}
+body{
+  text-align:center;
+}
+ul{
+  list-style-position:inside;
+}
