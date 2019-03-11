@@ -5,9 +5,11 @@ for (let i = 0; i < 4; i++) {
   let whichAny = ['anywhere', 'any-where'][Math.floor(i / 2) % 2];
   proxyFinder = proxyFinder.concat([whichCor + "-" + whichAny, whichAny + "-" + whichCor]);
 }
+  /*
 for (url of proxyFinder) {
   let hey = typeof url === "string" ? "https://" + url + ".herokuapp.com" : url("");
   fetch(hey, {
     mode: 'cors'
   }).catch(err => console.log("resulted in error", url));
 }
+*/
