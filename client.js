@@ -4,7 +4,7 @@ const {
   run,
   number
 } = document.translate;
-const header=document.getElementById("header");
+const header = document.getElementById("header");
 const langs = Object.keys(languages);
 const getLang = () => langs[Math.floor(Math.random() * langs.length)];
 const API_URL = "https://translate.googleapis.com/translate_a/single";
@@ -13,7 +13,7 @@ async function getTranslate(currentLang, nextLang, sourceText, doAlert = true) {
   let res;
   let toReq;
   for (let i = 0; i < proxyFinder.length; i++) {
-    toReq = proxyFinder[0](url);
+    toReq = (typeof proxyFinder[0] === "function") ? proxyFinder[0](url) : "https://" + proxyFinder[0] + ".herokuapp.com/" + url;
     try {
       res = await fetch(toReq, {
         mode: 'cors'
@@ -51,7 +51,7 @@ setTimeout(async () => {
     nextLang = getLang();
     sourceText = await getTranslate(currentLang, nextLang, sourceText, false);
     if (!sourceText) {
-      header.innerText="The toy killing ideas.";
+      header.innerText = "The toy killing ideas.";
       return;
     }
     header.innerText = sourceText;
