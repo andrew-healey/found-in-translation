@@ -23,9 +23,11 @@ async function getTranslate(currentLang, nextLang, sourceText, doAlert = true) {
     }
     if (!res || !res.ok) {
       proxyFinder.push(proxyFinder.shift());
-    } else break;
+    } else {
+      break;
+    }
   }
-  if (!res || res.statusText !== "OK") return doAlert ? alert("Error--Google has blocked this bot for ~5 minutes because Google hates bots.") : false;
+  if (!res || !res.ok) return doAlert ? alert("Error--Google has blocked this bot for ~5 minutes because Google hates bots.") : false;
   let json = await res.json();
   return json[0][0][0];
 }
