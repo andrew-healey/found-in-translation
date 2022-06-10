@@ -1,5 +1,5 @@
 # found-in-translation
 
-A program used to make any phrase funny through irresponsible use of the Google Translate API.
+An old script of mine. Runs phrases repeatedly through different languages of the Google Translate API.
 
-Try it out [here](https://Sesamestrong.github.io/found-in-translation)!
+Try it out [here](https://andrew-healey.github.io/found-in-translation).
